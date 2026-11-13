@@ -1,0 +1,43 @@
+name: Build APK Velocimetro
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Create android scaffolding
+        working-directory: appmovil
+        run: flutter create --platforms android .
+
+      - name: Add location permissions
+        working-directory: appmovil
+        run: |
+          sed -i 's|<application|    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>\n    <uses-permission android:name="android.permission.INTERNET"/>\n    <application|' android/app/src/main/AndroidManifest.xml
+
+      - name: Pub get
+        working-directory: appmovil
+        run: flutter pub get
+
+      - name: Build APK release
+        working-directory: appmovil
+        run: flutter build apk --release
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: velocimetro-apk
+          path: appmovil/build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30

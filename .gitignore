@@ -1,0 +1,19 @@
+node_modules/
+dist/
+build/
+**/.gradle/
+**/android/.gradle/
+appmovil/android/app/debug
+appmovil/android/app/profile
+appmovil/android/app/release
+.svelte-kit/
+.vercel/
+.vercel/output/
+coverage/
+*.log
+.DS_Store
+
+# Variables de entorno: nunca versionar archivos con secretos reales
+.env
+.env.*
+!.env.example

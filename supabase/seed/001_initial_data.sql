@@ -1,0 +1,14 @@
+-- SIGSE-CETIS 61 - Seed inicial
+--
+-- No se insertan estudiantes, tutores, incidencias ni movimientos reales.
+--
+-- Procedimiento recomendado para el primer administrador:
+-- 1. Crear el usuario en Supabase Auth (Dashboard > Authentication > Users).
+-- 2. El trigger on_auth_user_created crea su fila en public.profiles.
+-- 3. Desde una sesión con permisos de administrador o SQL del proyecto,
+--    cambiar su rol a 'admin'.
+--
+-- Ejemplo posterior, solo después de validar el flujo:
+-- update public.profiles
+-- set role = 'admin'
+-- where email = 'administrador@cetis61.edu.mx';

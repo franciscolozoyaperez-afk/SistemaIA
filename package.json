@@ -1,0 +1,25 @@
+{
+  "name": "sigse-cetis61",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SIGSE-CETIS 61: Sistema Integral de Gestión y Seguimiento Estudiantil",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @sigse/frontend & npm run dev --workspace @sigse/backend",
+    "dev:frontend": "npm run dev --workspace @sigse/frontend",
+    "dev:backend": "npm run dev --workspace @sigse/backend",
+    "build": "npm run build --workspace @sigse/frontend && npm run build --workspace @sigse/backend",
+    "start": "npm run start --workspace @sigse/backend"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "overrides": {
+    "esbuild": "0.27.7"
+  },
+  "packageManager": "npm@11.20.0"
+}
